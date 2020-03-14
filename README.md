@@ -1,16 +1,29 @@
-# flutterbasicarchitecture
+<h1> Flutter basic project architecture with using Clean Architecture and BLOC</h1>
 
-A new Flutter application.
+This project contains the basic logic for Flutter application with using Clean Architecture and BLOC and also useful libraries dependency in the pubspec.yaml.
 
-## Getting Started
+<h2>About BLOC</h2>
+<p>Bloc is a reactive state management pattern where data flows only in one direction. It can all be separated into three core steps:</p>
+<ul>
+<li><p><b>Events</b> (such as "get example text") are dispatched from the UI Widgets</p></li>
+    
+<li><p><b>Bloc</b> receives Events and executes appropriate business logic (calling the Use Cases, in the case of Clean Architecture).</li>
 
-This project is a starting point for a Flutter application.
+<li><p><b>States</b> are emitted from the Bloc back to the UI Widgets, which display the newly arrived data.</li>
+</ul>
+   
+-----------------------------------------------------------------------------------------
 
-A few resources to get you started if this is your first Flutter project:
+<h2>About Clean Architecture</h2>
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+Below is an example schema of the project\`s structure with Clean Architecture, where all the app\`s logic divided into 3 layers - <b>data, domain and presentation</b>:
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- <b>Data</b> - contain a Repository implementation (the contract comes from the domain layer) and data sources - one is usually for getting remote (API) data and the other for local caching data. 
+
+- <b>Domain</b> - inner layer which will contain only the core business logic (use cases), business objects (entities) and the contract(abstract calss) of the repository. It should be totally independent of every other layer.
+
+- <b>Presentation</b> - doesn't do much by itself. It delegates all its work to use cases. At most, the presentation layer handles basic input conversion and validation. Contains all screens (in our case with using bloc).
+
+
+
+![alt text](https://miro.medium.com/max/1150/1*ezdzzfMnFob-a1AvwhOOSA.png)
